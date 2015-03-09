@@ -1693,7 +1693,8 @@ div#notebook {
 <ol style="list-style-type: decimal">
 <li>Smuggle - Log, catalogue, and move python objects via pickling</li>
 <li>Sympa - Symbolic math for pandas</li>
-<li>PySter - coming soon...</li>
+<li>RRSM - Readable run-time state machine</li>
+<li>PySter - Python *anywhere</li>
 <li>Trump - coming soon...</li>
 </ol>
 </div>
@@ -1714,7 +1715,17 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Log, catalogue, and move python objects via pickling</p>
+<h6 id="Log,-catalogue,-and-move-python-objects-via-pickling">Log, catalogue, and move python objects via pickling<a class="anchor-link" href="#Log,-catalogue,-and-move-python-objects-via-pickling">&#182;</a></h6>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://coveralls.io/r/jnmclarty/smuggle?branch=master"><img src="https://coveralls.io/repos/jnmclarty/smuggle/badge.svg?branch=master" alt="Coverage Status" /></a></p>
 </div>
 </div>
 </div>
@@ -1854,10 +1865,11 @@ In&nbsp;[3]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Symbolic math for pandas</p>
+<h6 id="Symbolic-math-for-pandas">Symbolic math for pandas<a class="anchor-link" href="#Symbolic-math-for-pandas">&#182;</a></h6>
 </div>
 </div>
 </div>
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -2177,7 +2189,7 @@ In&nbsp;[10]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PySter-0.1.0">PySter 0.1.0<a class="anchor-link" href="#PySter-0.1.0">&#182;</a></h2>
+<h2 id="RRSM-0.2.0">RRSM 0.2.0<a class="anchor-link" href="#RRSM-0.2.0">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -2187,9 +2199,221 @@ In&nbsp;[10]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="coming-soon...">Coming Soon...</h3>
+<h6 id="Readable-run-time-state-machine">Readable run-time state machine<a class="anchor-link" href="#Readable-run-time-state-machine">&#182;</a></h6>
 </div>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://coveralls.io/r/jnmclarty/rrsm?branch=master"><img src="https://coveralls.io/repos/jnmclarty/rrsm/badge.svg?branch=master" alt="Coverage Status" /></a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">rrsm</span> <span class="kn">import</span> <span class="n">StateMachine</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This isn't exactly for iPython Notebook. It's more for prototyping classes in a way that makes it harder to write undocumented code. Just by using this class, you have no choice but to document the states properly.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c">#Instantiation works with a list of the form [&#39;state&#39;, ...]</span>
+<span class="c">#or a dictionary of the form {&#39;state&#39; : value, ...}</span>
+<span class="n">SM</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">([</span><span class="s">&#39;cool&#39;</span><span class="p">,</span> <span class="s">&#39;off&#39;</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">,</span> <span class="s">&#39;warm&#39;</span><span class="p">])</span> <span class="c">#Initializes to the first state, &quot;cool&quot;.</span>
+<span class="c">#checking state works against strings or integers:</span>
+<span class="n">SM</span> <span class="o">==</span> <span class="s">&#39;cool&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[5]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+True
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[6]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c">#Change the state</span>
+<span class="n">SM</span><span class="p">(</span><span class="s">&#39;warm&#39;</span><span class="p">)</span>
+<span class="c">#using attributes to check state:</span>
+<span class="n">SM</span> <span class="o">==</span> <span class="n">SM</span><span class="o">.</span><span class="n">cool</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[6]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+False
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">SM</span><span class="o">.</span><span class="n">current_state</span><span class="p">,</span> <span class="n">SM</span><span class="o">.</span><span class="n">current_code</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[8]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+(&apos;warm&apos;, 3)
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PySter-Beta">PySter Beta<a class="anchor-link" href="#PySter-Beta">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Python-*anywhere">Python *anywhere<a class="anchor-link" href="#Python-*anywhere">&#182;</a></h5>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Please see the <a href="https://github.com/jnmclarty/pyster">README</a>, and watch the video below in HD <a href="https://vimeo.com/121615286">@ vimeo</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.lib.display</span> <span class="kn">import</span> <span class="n">VimeoVideo</span>
+<span class="n">VimeoVideo</span><span class="p">(</span><span class="mi">121615286</span><span class="p">,</span><span class="mi">830</span><span class="p">,</span><span class="mi">467</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[23]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+
+        <iframe
+            width="830"
+            height=467"
+            src="https://player.vimeo.com/video/121615286"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2211,21 +2435,6 @@ In&nbsp;[10]:
 </div>
 </div>
 
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
     </div>
   </div>
 </body>
